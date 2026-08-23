@@ -3,7 +3,14 @@
  * homepage summary and the What We Do deep-dive never drift apart.
  */
 
-export type ServiceId = "ai" | "software" | "digital" | "cloud" | "automation";
+export type ServiceId =
+  | "software"
+  | "digital"
+  | "ai"
+  | "data"
+  | "cloud"
+  | "automation"
+  | "marketing";
 
 export interface Service {
   id: ServiceId;
@@ -15,31 +22,14 @@ export interface Service {
   anchor: string;
   deliverables: readonly string[];
   /** Abstract visual keyed per service — rendered by ServiceVisual. */
-  visual: "lattice" | "stack" | "viewport" | "topology" | "flow";
+  visual: "lattice" | "stack" | "viewport" | "topology" | "flow" | "warehouse" | "loop";
 }
 
 export const services: readonly Service[] = [
   {
-    id: "ai",
-    anchor: "ai-ml",
-    index: 1,
-    title: "AI & Machine Learning",
-    short: "Models that survive contact with real data.",
-    description:
-      "We build AI features that hold up outside a demo — retrieval systems over your own documents, predictive models on your operational data, language and vision pipelines, and the evaluation harnesses that tell you when they drift.",
-    deliverables: [
-      "Retrieval-augmented assistants",
-      "Predictive & forecasting models",
-      "Document understanding & NLP",
-      "Computer vision pipelines",
-      "Evaluation & monitoring",
-    ],
-    visual: "lattice",
-  },
-  {
     id: "software",
     anchor: "software-engineering",
-    index: 2,
+    index: 1,
     title: "Software Development",
     short: "Platforms, APIs and the systems behind them.",
     description:
@@ -56,7 +46,7 @@ export const services: readonly Service[] = [
   {
     id: "digital",
     anchor: "web-applications",
-    index: 3,
+    index: 2,
     title: "Web & Digital Products",
     short: "Interfaces with an argument behind them.",
     description:
@@ -71,9 +61,43 @@ export const services: readonly Service[] = [
     visual: "viewport",
   },
   {
+    id: "ai",
+    anchor: "ai-ml",
+    index: 3,
+    title: "AI & Machine Learning",
+    short: "Models that survive contact with real data.",
+    description:
+      "We build AI features that hold up outside a demo — retrieval systems over your own documents, predictive models on your operational data, language and vision pipelines, and the evaluation harnesses that tell you when they drift.",
+    deliverables: [
+      "Retrieval-augmented assistants",
+      "Predictive & forecasting models",
+      "Document understanding & NLP",
+      "Computer vision pipelines",
+      "Evaluation & monitoring",
+    ],
+    visual: "lattice",
+  },
+  {
+    id: "data",
+    anchor: "data-analytics",
+    index: 4,
+    title: "Data & Analytics",
+    short: "One version of the numbers and decision paths.",
+    description:
+      "Ingestion pipelines, warehouse modeling, metric definitions and clear dashboards built for decision makers.",
+    deliverables: [
+      "Ingestion pipelines",
+      "Warehouse modeling",
+      "Metric definitions",
+      "Reporting dashboards",
+      "Data quality monitoring",
+    ],
+    visual: "warehouse",
+  },
+  {
     id: "cloud",
     anchor: "cloud-infrastructure",
-    index: 4,
+    index: 5,
     title: "Cloud & Infrastructure",
     short: "Infrastructure you can reason about.",
     description:
@@ -90,7 +114,7 @@ export const services: readonly Service[] = [
   {
     id: "automation",
     anchor: "automation",
-    index: 5,
+    index: 6,
     title: "Automation",
     short: "Remove the work nobody should be doing.",
     description:
@@ -103,6 +127,23 @@ export const services: readonly Service[] = [
       "Scheduled & event-driven jobs",
     ],
     visual: "flow",
+  },
+  {
+    id: "marketing",
+    anchor: "marketing",
+    index: 7,
+    title: "Marketing & Strategy",
+    short: "Growth strategy, SEO and performance campaigns.",
+    description:
+      "Performance marketing campaigns across paid channels, technical SEO audits, content architecture, and conversion rate optimization to scale your brand.",
+    deliverables: [
+      "Performance marketing campaigns",
+      "SEO strategy & technical audits",
+      "Conversion rate optimization (CRO)",
+      "Brand & positioning strategy",
+      "Analytics & attribution dashboards",
+    ],
+    visual: "loop",
   },
 ];
 
