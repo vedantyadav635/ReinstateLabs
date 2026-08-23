@@ -8,7 +8,7 @@ export const site = {
   email: "hello@reinstatelabs.com",
   phone: "+91 98765 43210",
   phoneHref: "+919876543210",
-  location: "Pune, Maharashtra, India",
+  location: "Indore, Madhya Pradesh, India",
   locationDetail: "Working with teams across IST, CET and EST.",
   nav: [
     { label: "Home", href: "/" },

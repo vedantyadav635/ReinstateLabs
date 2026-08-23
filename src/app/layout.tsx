@@ -102,8 +102,8 @@ const organisationSchema = {
   description: site.description,
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Pune",
-    addressRegion: "Maharashtra",
+    addressLocality: "Indore",
+    addressRegion: "Madhya Pradesh",
     addressCountry: "IN",
   },
   sameAs: site.social.map((s) => s.href),
