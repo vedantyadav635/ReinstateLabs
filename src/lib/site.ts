@@ -9,7 +9,7 @@ export const site = {
   phone: "+91 98765 43210",
   phoneHref: "+919876543210",
   location: "Indore, Madhya Pradesh, India",
-  locationDetail: "Working with teams across IST, CET and EST.",
+  locationDetail: "Working with clients and teams worldwide.",
   nav: [
     { label: "Home", href: "/" },
     { label: "What We Do", href: "/what-we-do" },
