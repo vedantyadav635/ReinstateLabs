@@ -137,6 +137,7 @@ export const services: readonly Service[] = [
     description:
       "We help businesses grow with targeted ad campaigns, search engine optimization, high-converting landing pages, and clear brand strategy.",
     deliverables: [
+      "Social Media Management",
       "Google & Social Paid Ads",
       "SEO & Search Rankings",
       "Landing Pages & Conversion",
@@ -291,6 +292,7 @@ export const capabilities: readonly Capability[] = [
     title: "Marketing",
     summary: "Clear strategies to grow your brand, get found on Google, and convert visitors into customers.",
     points: [
+      "Social Media Management – Content creation, posting and audience engagement",
       "Paid ads on Google, Meta, LinkedIn, and social channels",
       "Search Engine Optimization (SEO) to rank higher on Google",
       "Landing page design and conversion rate optimization",
