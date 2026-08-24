@@ -8,6 +8,7 @@ import {
   budgetOptions,
   contactRequired,
   emptyInquiry,
+  maxLengths,
   projectTypeOptions,
   serviceOptions,
   validateInquiry,
@@ -15,6 +16,7 @@ import {
   type InquiryFields,
 } from "@/lib/inquiry";
 import { easing } from "@/lib/motion";
+import { site } from "@/lib/site";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { ChoiceField, TextAreaField, TextField } from "@/components/ui/Field";
 
@@ -66,6 +68,8 @@ export function InquiryForm({ variant }: { variant: Variant }) {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    if (status === "submitting") return;
+
     const result = validateInquiry(values, required);
     setErrors(result);
     setTouched(
@@ -110,12 +114,13 @@ export function InquiryForm({ variant }: { variant: Variant }) {
 
       setStatus("error");
       setServerMessage(
-        data?.message ?? "We could not send that. Please try again in a moment.",
+        data?.message ??
+          `Something went wrong. Please try again or email us directly at ${site.email}.`,
       );
     } catch {
       setStatus("error");
       setServerMessage(
-        "The request did not reach us. Check your connection and try again.",
+        `Something went wrong. Please try again or email us directly at ${site.email}.`,
       );
     }
   };
@@ -144,11 +149,13 @@ export function InquiryForm({ variant }: { variant: Variant }) {
         <span className="flex size-11 items-center justify-center rounded-full border border-ember text-ember">
           <Check strokeWidth={1.75} className="size-5" />
         </span>
-        <h3 className="display-sm mt-8 uppercase">Request received</h3>
+        <h3 className="display-sm mt-8 uppercase">
+          {isAppointment ? "Appointment request received" : "Message sent"}
+        </h3>
         <p className="lede mt-5 max-w-[44ch]">
-          Thank you, {values.name.trim().split(" ")[0] || "there"}. Your enquiry
-          is with us. We read every one ourselves and reply from a real address —
-          expect a response to {values.email.trim()}.
+          {isAppointment
+            ? `Thank you, ${values.name.trim().split(" ")[0] || "there"}. Your appointment request has been received — this is not a confirmed appointment yet. We read every one ourselves and reply from a real address to ${values.email.trim()}.`
+            : `Thank you, ${values.name.trim().split(" ")[0] || "there"}. Your message has been sent successfully. We read every one ourselves and reply from a real address to ${values.email.trim()}.`}
         </p>
         <dl className="mt-10 grid gap-px border-t border-line bg-line sm:grid-cols-2">
           {[
@@ -180,6 +187,22 @@ export function InquiryForm({ variant }: { variant: Variant }) {
       <span aria-hidden className="pointer-events-none absolute -right-24 -top-24 size-72 rounded-full bg-ember/5 blur-3xl" />
 
       <form ref={formRef} onSubmit={handleSubmit} noValidate className="relative z-10 space-y-10">
+        {/* Honeypot — invisible to sighted and screen-reader users, out of
+            tab order. A simple bot that fills every field trips it; a real
+            visitor never encounters it. */}
+        <div className="sr-only" aria-hidden="true">
+          <label htmlFor="website">Leave this field blank</label>
+          <input
+            id="website"
+            name="website"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            value={values.website}
+            onChange={(event) => setField("website")(event.target.value)}
+          />
+        </div>
+
         <div className="grid gap-x-8 gap-y-7 sm:grid-cols-2">
           <TextField
             label="Name"
@@ -189,6 +212,7 @@ export function InquiryForm({ variant }: { variant: Variant }) {
             required={isRequired("name")}
             autoComplete="name"
             placeholder="Your full name"
+            maxLength={maxLengths.name}
             onChange={setField("name")}
             onBlur={handleBlur("name")}
           />
@@ -200,6 +224,7 @@ export function InquiryForm({ variant }: { variant: Variant }) {
             required={isRequired("company")}
             autoComplete="organization"
             placeholder="Where you work"
+            maxLength={maxLengths.company}
             onChange={setField("company")}
             onBlur={handleBlur("company")}
           />
@@ -212,6 +237,7 @@ export function InquiryForm({ variant }: { variant: Variant }) {
             required={isRequired("email")}
             autoComplete="email"
             placeholder="you@company.com"
+            maxLength={maxLengths.email}
             onChange={setField("email")}
             onBlur={handleBlur("email")}
           />
@@ -224,6 +250,7 @@ export function InquiryForm({ variant }: { variant: Variant }) {
             required={isRequired("phone")}
             autoComplete="tel"
             placeholder="+91 00000 00000"
+            maxLength={maxLengths.phone}
             onChange={setField("phone")}
             onBlur={handleBlur("phone")}
           />
@@ -279,7 +306,7 @@ export function InquiryForm({ variant }: { variant: Variant }) {
             error={errorFor("message")}
             required={isRequired("message")}
             rows={5}
-            maxLength={4000}
+            maxLength={maxLengths.message}
             placeholder={
               isAppointment
                 ? "What are you building, what exists today, and what does success look like?"

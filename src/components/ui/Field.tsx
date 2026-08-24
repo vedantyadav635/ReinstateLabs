@@ -87,12 +87,14 @@ export function TextField({
   type = "text",
   placeholder,
   autoComplete,
+  maxLength,
   onChange,
   onBlur,
 }: BaseProps & {
   type?: "text" | "email" | "tel";
   placeholder?: string;
   autoComplete?: string;
+  maxLength?: number;
   onChange: (value: string) => void;
   onBlur?: () => void;
 }) {
@@ -113,6 +115,7 @@ export function TextField({
         value={value}
         placeholder={placeholder}
         autoComplete={autoComplete}
+        maxLength={maxLength}
         required={required}
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? `${id}-error` : hint ? `${id}-hint` : undefined}
