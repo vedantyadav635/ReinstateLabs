@@ -43,7 +43,7 @@ function Block({
       <div className="flex flex-wrap items-start justify-between gap-8">
         <div className="max-w-[34ch]">
           <p className="label text-ember">{pad(index + 1)}</p>
-          <h3 className="display-sm mt-5 uppercase md:text-[2.125rem]">{capability.title}</h3>
+          <h2 className="display-sm mt-5 uppercase md:text-[2.125rem]">{capability.title}</h2>
           <p className="mt-5 text-[1.0625rem] leading-relaxed text-paper-dim">
             {capability.summary}
           </p>

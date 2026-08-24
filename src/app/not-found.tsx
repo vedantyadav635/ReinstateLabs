@@ -5,7 +5,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Page not found",
-  description: "That page does not exist on reinstatelabs.com.",
+  description: `That page does not exist on ${site.name}.`,
   robots: { index: false, follow: true },
 };
 

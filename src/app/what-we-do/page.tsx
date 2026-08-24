@@ -3,6 +3,8 @@ import { Section } from "@/components/layout/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { AnimatedText } from "@/components/animations/AnimatedText";
 import { CapabilityIndex } from "@/components/sections/CapabilityIndex";
+import { capabilities } from "@/lib/content";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "What We Do",
@@ -17,9 +19,28 @@ export const metadata: Metadata = {
   },
 };
 
+const capabilitiesSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  itemListElement: capabilities.map((capability, i) => ({
+    "@type": "Service",
+    position: i + 1,
+    name: capability.title,
+    description: capability.summary,
+    provider: { "@type": "Organization", name: site.name, url: site.url },
+    url: `${site.url}/what-we-do#${capability.id}`,
+  })),
+};
+
 export default function WhatWeDoPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        // Static, author-controlled structured data mirroring the capabilities below.
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(capabilitiesSchema) }}
+      />
+
       <Section id="capabilities" space="base" labelledBy="capabilities-heading">
         <SectionHeading index={1} eyebrow="Capability index">
           Seven practices. Each is a real team competency, not a keyword.
@@ -27,7 +48,7 @@ export default function WhatWeDoPage() {
 
         <div className="mb-16 mt-12 md:mb-24 md:mt-16">
           <AnimatedText
-            as="h2"
+            as="h1"
             id="capabilities-heading"
             lines={["What we build"]}
             className="display-lg uppercase"

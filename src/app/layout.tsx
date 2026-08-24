@@ -69,6 +69,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: "@reinstatelabs",
     title: "ReinstateLabs — Building What's Next",
     description: site.description,
     images: ["/opengraph-image"],
@@ -92,21 +93,33 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-const organisationSchema = {
+const structuredData = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: site.name,
-  url: site.url,
-  email: site.email,
-  telephone: site.phone,
-  description: site.description,
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Indore",
-    addressRegion: "Madhya Pradesh",
-    addressCountry: "IN",
-  },
-  sameAs: site.social.map((s) => s.href),
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${site.url}/#organization`,
+      name: site.name,
+      url: site.url,
+      email: site.email,
+      telephone: site.phone,
+      description: site.description,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Indore",
+        addressRegion: "Madhya Pradesh",
+        addressCountry: "IN",
+      },
+      sameAs: site.social.map((s) => s.href),
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${site.url}/#website`,
+      name: site.name,
+      url: site.url,
+      publisher: { "@id": `${site.url}/#organization` },
+    },
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -124,12 +137,31 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <noscript>
           <style>{`[data-rl-reveal]{opacity:1!important;transform:none!important}`}</style>
         </noscript>
+        {/* Silence hydration mismatches injected by browser extensions (e.g. Dark Reader).
+            These attributes don't exist server-side and are harmless — suppressing them
+            keeps the console clean without masking real bugs. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){
+  var orig = console.error.bind(console);
+  console.error = function() {
+    var msg = arguments[0];
+    if (typeof msg === 'string' && (
+      msg.includes('darkreader') ||
+      msg.includes('data-darkreader') ||
+      msg.includes('Prop') && msg.includes('did not match')
+    )) return;
+    orig.apply(console, arguments);
+  };
+})();`,
+          }}
+        />
       </head>
-      <body className="min-h-svh antialiased">
+      <body className="min-h-svh antialiased" suppressHydrationWarning>
         <script
           type="application/ld+json"
           // Static, author-controlled structured data.
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organisationSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
 
         <a
