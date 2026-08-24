@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   motion,
   useMotionValueEvent,
@@ -28,11 +28,38 @@ export function Navbar() {
   const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // Refs to avoid stale closures and implement proper hysteresis.
+  const lastScrollY = useRef(0);
+  const scrollDelta = useRef(0);
+
   useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious() ?? 0;
     setCondensed(latest > 24);
-    // Hide on sustained downward scroll, reveal instantly on the way back up.
-    setHidden(latest > 320 && latest > previous + 2);
+
+    const delta = latest - lastScrollY.current;
+    lastScrollY.current = latest;
+
+    // Accumulate direction — prevents single-frame jitter from toggling state.
+    if (Math.sign(delta) === Math.sign(scrollDelta.current)) {
+      scrollDelta.current += delta;
+    } else {
+      // Direction changed — reset accumulator.
+      scrollDelta.current = delta;
+    }
+
+    // Must be past the threshold before hide logic kicks in.
+    if (latest < 120) {
+      setHidden(false);
+      scrollDelta.current = 0;
+      return;
+    }
+
+    if (scrollDelta.current > 8) {
+      // Scrolled down enough — hide the navbar.
+      setHidden(true);
+    } else if (scrollDelta.current < -24) {
+      // Scrolled up enough — reveal the navbar.
+      setHidden(false);
+    }
   });
 
   useEffect(() => {
@@ -124,16 +151,19 @@ export function Navbar() {
           </div>
         </div>
 
-        {/* Reading position. Appears only once the bar has condensed. */}
-        <motion.span
-          aria-hidden
-          style={{ scaleX: progress }}
-          className={cn(
-            "absolute inset-x-0 bottom-0 block h-px origin-left bg-ember transition-opacity duration-500",
-            condensed && !menuOpen ? "opacity-100" : "opacity-0",
-          )}
-        />
+
       </motion.header>
+
+      {/* Reading-progress bar — always pinned to the very top of the viewport,
+          independent of navbar visibility so it persists while scrolling down. */}
+      <motion.span
+        aria-hidden
+        style={{ scaleX: progress }}
+        className={cn(
+          "pointer-events-none fixed inset-x-0 top-0 z-[51] block h-px origin-left bg-ember transition-opacity duration-500",
+          condensed && !menuOpen ? "opacity-100" : "opacity-0",
+        )}
+      />
 
       <AnimatePresence>
         {menuOpen ? <MobileMenu onClose={() => setMenuOpen(false)} /> : null}

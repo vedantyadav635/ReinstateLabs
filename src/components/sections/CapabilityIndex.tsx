@@ -49,7 +49,7 @@ function Block({
           </p>
         </div>
 
-        <div className="relative w-32 shrink-0 md:w-40">
+        <div className="relative hidden w-32 shrink-0 md:block md:w-40">
           <motion.div
             data-rl-reveal
             initial={{ opacity: 0, scale: 0.92 }}

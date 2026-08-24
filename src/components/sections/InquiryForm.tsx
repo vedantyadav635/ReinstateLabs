@@ -173,158 +173,165 @@ export function InquiryForm({ variant }: { variant: Variant }) {
   }
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit} noValidate className="space-y-12">
-      <div className="grid gap-x-10 gap-y-9 sm:grid-cols-2">
-        <TextField
-          label="Name"
-          name="name"
-          value={values.name}
-          error={errorFor("name")}
-          required={isRequired("name")}
-          autoComplete="name"
-          placeholder="Your full name"
-          onChange={setField("name")}
-          onBlur={handleBlur("name")}
-        />
-        <TextField
-          label="Company"
-          name="company"
-          value={values.company}
-          error={errorFor("company")}
-          required={isRequired("company")}
-          autoComplete="organization"
-          placeholder="Where you work"
-          onChange={setField("company")}
-          onBlur={handleBlur("company")}
-        />
-        <TextField
-          label="Email"
-          name="email"
-          type="email"
-          value={values.email}
-          error={errorFor("email")}
-          required={isRequired("email")}
-          autoComplete="email"
-          placeholder="you@company.com"
-          onChange={setField("email")}
-          onBlur={handleBlur("email")}
-        />
-        <TextField
-          label="Phone"
-          name="phone"
-          type="tel"
-          value={values.phone}
-          error={errorFor("phone")}
-          required={isRequired("phone")}
-          autoComplete="tel"
-          placeholder="+91 00000 00000"
-          onChange={setField("phone")}
-          onBlur={handleBlur("phone")}
-        />
-      </div>
+    <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-ink-raised/80 p-6 sm:p-10 shadow-2xl backdrop-blur-md">
+      {/* Top subtle highlight line */}
+      <span aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-ember/60 to-transparent" />
+      {/* Subtle ambient corner glow */}
+      <span aria-hidden className="pointer-events-none absolute -right-24 -top-24 size-72 rounded-full bg-ember/5 blur-3xl" />
 
-      {isAppointment ? (
-        <div className="space-y-10 border-t border-line pt-12">
-          <ChoiceField
-            label="Service"
-            name="service"
-            value={values.service}
-            options={serviceOptions}
-            error={errorFor("service")}
-            required
-            onChange={(value) => {
-              setField("service")(value);
-              setTouched((prev) => ({ ...prev, service: true }));
-            }}
+      <form ref={formRef} onSubmit={handleSubmit} noValidate className="relative z-10 space-y-10">
+        <div className="grid gap-x-8 gap-y-7 sm:grid-cols-2">
+          <TextField
+            label="Name"
+            name="name"
+            value={values.name}
+            error={errorFor("name")}
+            required={isRequired("name")}
+            autoComplete="name"
+            placeholder="Your full name"
+            onChange={setField("name")}
+            onBlur={handleBlur("name")}
           />
-          <ChoiceField
-            label="Project type"
-            name="projectType"
-            value={values.projectType}
-            options={projectTypeOptions}
-            error={errorFor("projectType")}
-            required
-            onChange={(value) => {
-              setField("projectType")(value);
-              setTouched((prev) => ({ ...prev, projectType: true }));
-            }}
+          <TextField
+            label="Company"
+            name="company"
+            value={values.company}
+            error={errorFor("company")}
+            required={isRequired("company")}
+            autoComplete="organization"
+            placeholder="Where you work"
+            onChange={setField("company")}
+            onBlur={handleBlur("company")}
           />
-          <ChoiceField
-            label="Budget range"
-            name="budget"
-            value={values.budget}
-            options={budgetOptions}
-            error={errorFor("budget")}
-            required
-            hint="An indication is enough. It tells us what shape of solution is realistic."
-            onChange={(value) => {
-              setField("budget")(value);
-              setTouched((prev) => ({ ...prev, budget: true }));
-            }}
+          <TextField
+            label="Email"
+            name="email"
+            type="email"
+            value={values.email}
+            error={errorFor("email")}
+            required={isRequired("email")}
+            autoComplete="email"
+            placeholder="you@company.com"
+            onChange={setField("email")}
+            onBlur={handleBlur("email")}
+          />
+          <TextField
+            label="Phone"
+            name="phone"
+            type="tel"
+            value={values.phone}
+            error={errorFor("phone")}
+            required={isRequired("phone")}
+            autoComplete="tel"
+            placeholder="+91 00000 00000"
+            onChange={setField("phone")}
+            onBlur={handleBlur("phone")}
           />
         </div>
-      ) : null}
 
-      <div className="border-t border-line pt-12">
-        <TextAreaField
-          label="Message"
-          name="message"
-          value={values.message}
-          error={errorFor("message")}
-          required={isRequired("message")}
-          rows={6}
-          maxLength={4000}
-          placeholder={
-            isAppointment
-              ? "What are you building, what exists today, and what does success look like?"
-              : "Tell us what you have in mind."
-          }
-          onChange={setField("message")}
-          onBlur={handleBlur("message")}
-        />
-      </div>
+        {isAppointment ? (
+          <div className="space-y-8 border-t border-white/10 pt-9">
+            <ChoiceField
+              label="Service"
+              name="service"
+              value={values.service}
+              options={serviceOptions}
+              error={errorFor("service")}
+              required
+              onChange={(value) => {
+                setField("service")(value);
+                setTouched((prev) => ({ ...prev, service: true }));
+              }}
+            />
+            <ChoiceField
+              label="Project type"
+              name="projectType"
+              value={values.projectType}
+              options={projectTypeOptions}
+              error={errorFor("projectType")}
+              required
+              onChange={(value) => {
+                setField("projectType")(value);
+                setTouched((prev) => ({ ...prev, projectType: true }));
+              }}
+            />
+            <ChoiceField
+              label="Budget range"
+              name="budget"
+              value={values.budget}
+              options={budgetOptions}
+              error={errorFor("budget")}
+              required
+              hint="An indication is enough. It tells us what shape of solution is realistic."
+              onChange={(value) => {
+                setField("budget")(value);
+                setTouched((prev) => ({ ...prev, budget: true }));
+              }}
+            />
+          </div>
+        ) : null}
 
-      <div className="flex flex-wrap items-center justify-between gap-6 border-t border-line pt-8">
-        <p className="max-w-[36ch] text-[0.8125rem] leading-relaxed text-mute-deep">
-          We use your details only to reply to this enquiry. Nothing is shared
-          with anyone else.
-        </p>
-
-        <div className="flex items-center gap-5">
-          <AnimatePresence>
-            {serverMessage ? (
-              <motion.p
-                role="alert"
-                initial={{ opacity: 0, x: 8 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0 }}
-                className="flex items-center gap-2 text-[0.8125rem] text-ember-soft"
-              >
-                <AlertCircle aria-hidden strokeWidth={1.7} className="size-4 shrink-0" />
-                {serverMessage}
-              </motion.p>
-            ) : null}
-          </AnimatePresence>
-
-          <MagneticButton
-            type="submit"
-            size="lg"
-            disabled={status === "submitting"}
-            arrow={status !== "submitting"}
-          >
-            {status === "submitting" ? (
-              <span className="flex items-center gap-2">
-                <Loader2 aria-hidden className="size-4 animate-spin" />
-                Sending
-              </span>
-            ) : isAppointment ? (
-              "Request appointment"
-            ) : (
-              "Send message"
-            )}
-          </MagneticButton>
+        <div className="border-t border-white/10 pt-9">
+          <TextAreaField
+            label="Message"
+            name="message"
+            value={values.message}
+            error={errorFor("message")}
+            required={isRequired("message")}
+            rows={5}
+            maxLength={4000}
+            placeholder={
+              isAppointment
+                ? "What are you building, what exists today, and what does success look like?"
+                : "Tell us what you have in mind."
+            }
+            onChange={setField("message")}
+            onBlur={handleBlur("message")}
+          />
         </div>
-      </div>
-    </form>
+
+        <div className="flex flex-wrap items-center justify-between gap-6 border-t border-white/10 pt-8">
+          <p className="max-w-[36ch] text-[0.8125rem] leading-relaxed text-paper-dim/70">
+            We use your details only to reply to this enquiry. Nothing is shared
+            with anyone else.
+          </p>
+
+          <div className="flex items-center gap-5">
+            <AnimatePresence>
+              {serverMessage ? (
+                <motion.p
+                  role="alert"
+                  initial={{ opacity: 0, x: 8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0 }}
+                  className="flex items-center gap-2 text-[0.8125rem] text-ember-soft font-medium"
+                >
+                  <AlertCircle aria-hidden strokeWidth={1.7} className="size-4 shrink-0" />
+                  {serverMessage}
+                </motion.p>
+              ) : null}
+            </AnimatePresence>
+
+            <MagneticButton
+              type="submit"
+              size="lg"
+              disabled={status === "submitting"}
+              arrow={status !== "submitting"}
+            >
+              {status === "submitting" ? (
+                <span className="flex items-center gap-2">
+                  <Loader2 aria-hidden className="size-4 animate-spin" />
+                  Sending
+                </span>
+              ) : isAppointment ? (
+                "Request appointment"
+              ) : (
+                "Send message"
+              )}
+            </MagneticButton>
+          </div>
+        </div>
+      </form>
+    </div>
   );
 }

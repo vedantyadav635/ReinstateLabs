@@ -16,7 +16,7 @@ interface BaseProps {
 }
 
 const inputBase =
-  "w-full border-0 border-b border-line bg-transparent px-0 py-3 text-[1.0625rem] text-paper outline-none transition-colors duration-300 placeholder:text-mute-deep focus:border-paper/50";
+  "w-full rounded-xl border border-white/12 bg-white/[0.03] px-4 py-3.5 text-[0.9375rem] text-paper outline-none transition-all duration-300 placeholder:text-paper-dim/40 hover:border-white/25 focus:border-ember focus:bg-white/[0.05] focus:ring-1 focus:ring-ember/40 shadow-inner";
 
 function FieldShell({
   id,
@@ -37,18 +37,21 @@ function FieldShell({
 }) {
   return (
     <div className={cn("relative", className)}>
-      <label htmlFor={id} className="label flex items-center gap-2 text-mute-deep">
-        {label}
-        {required ? (
-          <span className="text-ember" aria-hidden>
-            *
-          </span>
-        ) : (
-          <span className="text-mute-deep">(optional)</span>
-        )}
+      <label htmlFor={id} className="label flex items-center justify-between text-paper-dim font-medium tracking-wider text-[0.75rem] uppercase">
+        <span className="flex items-center gap-1.5">
+          {label}
+          {required ? (
+            <span className="text-ember font-bold" aria-hidden>
+              *
+            </span>
+          ) : null}
+        </span>
+        {!required ? (
+          <span className="text-mute-deep text-[0.6875rem] normal-case tracking-normal">(optional)</span>
+        ) : null}
       </label>
 
-      <div className="mt-2">{children}</div>
+      <div className="mt-2.5">{children}</div>
 
       <AnimatePresence initial={false}>
         {error ? (
@@ -59,12 +62,12 @@ function FieldShell({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25, ease: easing.outExpo }}
-            className="mt-2 text-[0.8125rem] text-ember-soft"
+            className="mt-2 text-[0.8125rem] text-ember-soft font-medium flex items-center gap-1.5"
           >
             {error}
           </motion.p>
         ) : hint ? (
-          <p id={`${id}-hint`} className="mt-2 text-[0.8125rem] text-mute-deep">
+          <p id={`${id}-hint`} className="mt-2 text-[0.8125rem] text-mute">
             {hint}
           </p>
         ) : null}
@@ -115,7 +118,7 @@ export function TextField({
         aria-describedby={error ? `${id}-error` : hint ? `${id}-hint` : undefined}
         onChange={(event) => onChange(event.target.value)}
         onBlur={onBlur}
-        className={cn(inputBase, error && "border-ember/70")}
+        className={cn(inputBase, error && "border-ember/70 focus:border-ember")}
       />
     </FieldShell>
   );
@@ -163,7 +166,7 @@ export function TextAreaField({
         aria-describedby={error ? `${id}-error` : hint ? `${id}-hint` : undefined}
         onChange={(event) => onChange(event.target.value)}
         onBlur={onBlur}
-        className={cn(inputBase, "resize-y leading-relaxed", error && "border-ember/70")}
+        className={cn(inputBase, "resize-y leading-relaxed", error && "border-ember/70 focus:border-ember")}
       />
       {maxLength ? (
         <p className="label mt-2 text-right text-mute-deep" aria-hidden>
@@ -198,28 +201,30 @@ export function ChoiceField({
       className={cn("relative", className)}
       aria-describedby={error ? `${id}-error` : hint ? `${id}-hint` : undefined}
     >
-      <legend className="label flex items-center gap-2 text-mute-deep">
-        {label}
-        {required ? (
-          <span className="text-ember" aria-hidden>
-            *
-          </span>
-        ) : null}
+      <legend className="label flex items-center justify-between text-paper-dim font-medium tracking-wider text-[0.75rem] uppercase w-full">
+        <span className="flex items-center gap-1.5">
+          {label}
+          {required ? (
+            <span className="text-ember font-bold" aria-hidden>
+              *
+            </span>
+          ) : null}
+        </span>
       </legend>
 
-      <div className="mt-4 flex flex-wrap gap-2">
+      <div className="mt-3.5 flex flex-wrap gap-2.5">
         {options.map((option) => {
           const selected = value === option;
           return (
             <label
               key={option}
               className={cn(
-                "group relative cursor-pointer select-none border px-4 py-2.5 text-[0.875rem] transition-colors duration-300",
+                "group relative cursor-pointer select-none rounded-xl border px-4 py-2.5 text-[0.875rem] transition-all duration-200",
                 "has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-ember",
                 selected
-                  ? "border-ember bg-ember/12 text-paper"
-                  : "border-line text-mute hover:border-line-strong hover:text-paper-dim",
-                error && !selected && "border-ember/30",
+                  ? "border-ember bg-ember/15 text-paper font-medium shadow-[0_0_15px_rgba(226,85,43,0.18)]"
+                  : "border-white/12 bg-white/[0.03] text-paper-dim hover:bg-white/[0.07] hover:border-white/25 hover:text-paper shadow-sm",
+                error && !selected && "border-ember/40",
               )}
             >
               <input
@@ -230,12 +235,14 @@ export function ChoiceField({
                 onChange={() => onChange(option)}
                 className="sr-only"
               />
-              <span className="flex items-center gap-2">
+              <span className="flex items-center gap-2.5">
                 <span
                   aria-hidden
                   className={cn(
-                    "size-1.5 rounded-full transition-colors duration-300",
-                    selected ? "bg-ember" : "bg-mute-deep group-hover:bg-mute",
+                    "size-2 rounded-full transition-all duration-300",
+                    selected
+                      ? "bg-ember shadow-[0_0_8px_rgba(226,85,43,0.8)] scale-110"
+                      : "bg-white/30 group-hover:bg-white/60",
                   )}
                 />
                 {option}
@@ -254,12 +261,12 @@ export function ChoiceField({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25, ease: easing.outExpo }}
-            className="mt-3 text-[0.8125rem] text-ember-soft"
+            className="mt-2.5 text-[0.8125rem] text-ember-soft font-medium"
           >
             {error}
           </motion.p>
         ) : hint ? (
-          <p id={`${id}-hint`} className="mt-3 text-[0.8125rem] text-mute-deep">
+          <p id={`${id}-hint`} className="mt-2.5 text-[0.8125rem] text-mute">
             {hint}
           </p>
         ) : null}
