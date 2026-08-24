@@ -4,12 +4,13 @@
  */
 
 export const serviceOptions = [
+  "Software Engineering",
+  "Web Applications",
   "AI & Machine Learning",
-  "Software Development",
-  "Web & Digital Products",
+  "Data & Analytics",
   "Cloud & Infrastructure",
   "Automation",
-  "Other",
+  "Marketing",
 ] as const;
 
 export const projectTypeOptions = [
