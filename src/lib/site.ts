@@ -5,7 +5,7 @@ export const site = {
   description:
     "ReinstateLabs is a technology studio. We design and build software, AI systems, cloud infrastructure, and automation for companies that need technology to work in production.",
   url: "https://reinstatelabs.in",
-  email: "hello@reinstatelabs.com",
+  email: "hello@reinstatelabs.in",
   phone: "+91 83499 10482",
   phoneHref: "+918349910482",
   location: "Indore, Madhya Pradesh, India",
