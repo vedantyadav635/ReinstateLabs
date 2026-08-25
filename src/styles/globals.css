@@ -146,6 +146,44 @@
   padding-inline: var(--shell-wide-gutter);
 }
 
+/* ------------------------------------------------------------------ *
+ *  Fluid spacing scale — one shared vertical rhythm and one shared grid
+ *  gap, used by every section outside the hero. Each scales continuously
+ *  with the viewport instead of jumping at a breakpoint, so proportions
+ *  stay coherent at any zoom level or monitor width, not just the ones a
+ *  design was eyeballed at. Bounded top and bottom, so nothing keeps
+ *  growing forever on an ultra-wide monitor.
+ * ------------------------------------------------------------------ */
+
+/* Supporting blocks — e.g. the capability index, contact/booking pages. */
+@utility section-py-tight {
+  padding-block: clamp(4rem, 5vw, 6rem);
+}
+/* Standard content sections — the default rhythm most of the page uses. */
+@utility section-py-base {
+  padding-block: clamp(6rem, 7vw, 9rem);
+}
+/* Statement sections — the philosophy line, the closing CTA. */
+@utility section-py-wide {
+  padding-block: clamp(8rem, 9vw, 13rem);
+}
+/* Compact top-of-page rhythm — page headers and the footer's lead-in,
+   which sit closer to the fixed navbar than a full section does. Split into
+   single-sided properties (rather than padding-block) so each can combine
+   cleanly with a distinct value already set on the opposite edge. */
+@utility section-pt-compact {
+  padding-top: clamp(5rem, 6vw, 7rem);
+}
+@utility section-pb-compact {
+  padding-bottom: clamp(5rem, 6vw, 7rem);
+}
+
+/* Shared grid gap for every major 12-column section layout (contact,
+   booking, footer, process, stack, capability index, CTA). */
+@utility content-gap {
+  gap: clamp(1.5rem, 3vw, 4rem);
+}
+
 /* Editorial display sizes — fluid, no layout shift */
 @utility display-xl {
   font-family: var(--font-display);

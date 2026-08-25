@@ -30,7 +30,7 @@ export function PageHero({
   return (
     <section
       className={cn(
-        "relative isolate overflow-hidden pb-20 pt-[calc(var(--nav-h)+4.5rem)] md:pb-28 md:pt-[calc(var(--nav-h)+7rem)]",
+        "relative isolate overflow-hidden section-pb-compact pt-[calc(var(--nav-h)+4.5rem)] md:pt-[calc(var(--nav-h)+7rem)]",
         className,
       )}
       aria-labelledby="page-heading"
@@ -60,7 +60,7 @@ export function PageHero({
           />
         </div>
 
-        <div className="mt-14 grid gap-10 border-t border-line pt-8 lg:grid-cols-12">
+        <div className="content-gap mt-14 grid border-t border-line pt-8 lg:grid-cols-12">
           <ScrollReveal distance={20} delay={0.2} className="lg:col-span-6">
             <p className="lede max-w-[52ch]">{lede}</p>
           </ScrollReveal>

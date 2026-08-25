@@ -59,7 +59,7 @@ export default function BookAppointmentPage() {
           Required fields are marked. Everything else helps us prepare.
         </SectionHeading>
 
-        <div className="mt-14 grid gap-14 lg:grid-cols-12 lg:gap-16">
+        <div className="content-gap mt-14 grid lg:grid-cols-12">
           <div className="lg:col-span-4">
             <div className="lg:sticky lg:top-[calc(var(--nav-h)+3.5rem)]">
               <h2 id="booking-heading" className="display-sm uppercase">

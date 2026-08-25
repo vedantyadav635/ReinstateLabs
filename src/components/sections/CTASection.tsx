@@ -36,7 +36,7 @@ export function CTASection({
     <section
       ref={ref}
       aria-labelledby="cta-heading"
-      className="relative isolate overflow-hidden bg-ink-sunken py-16 sm:py-24 md:py-36 lg:py-48"
+      className="relative isolate overflow-hidden bg-ink-sunken section-py-wide"
     >
       <motion.div
         aria-hidden
@@ -81,7 +81,7 @@ export function CTASection({
           className="display-lg max-w-[16ch] uppercase text-balance"
         />
 
-        <div className="mt-8 grid gap-8 border-t border-line pt-8 sm:mt-12 sm:pt-10 lg:grid-cols-12 lg:gap-8">
+        <div className="content-gap mt-8 grid border-t border-line pt-8 sm:mt-12 sm:pt-10 lg:grid-cols-12">
           <p className="lede max-w-[48ch] lg:col-span-6">{body}</p>
 
           <div className="flex flex-col gap-3.5 sm:flex-row sm:flex-wrap sm:items-center lg:col-span-6 lg:justify-end">

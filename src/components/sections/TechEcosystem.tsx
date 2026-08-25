@@ -24,7 +24,7 @@ export function TechEcosystem({
     <Section id="stack" tone="raised" labelledBy="stack-heading">
       <SectionHeading index={index} eyebrow="Technology" />
 
-      <div className="mt-14 grid gap-10 lg:grid-cols-12 lg:gap-16">
+      <div className="content-gap mt-14 grid lg:grid-cols-12">
         <div className="lg:col-span-5">
           <AnimatedText
             as="h2"

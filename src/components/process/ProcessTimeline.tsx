@@ -55,7 +55,7 @@ export function ProcessTimeline() {
   const current = processSteps[active];
 
   return (
-    <div ref={containerRef} className="relative grid gap-y-6 lg:grid-cols-12 lg:gap-x-12">
+    <div ref={containerRef} className="content-gap relative grid lg:grid-cols-12">
       {/* Sticky stage readout */}
       <div aria-hidden className="hidden lg:col-span-5 lg:block">
         <div className="sticky top-[calc(var(--nav-h)+3.5rem)]">
@@ -87,7 +87,7 @@ export function ProcessTimeline() {
                   exit={{ opacity: 0, y: -12 }}
                   transition={{ duration: 0.45, ease: easing.outExpo }}
                 >
-                  <p className="font-display text-[7.5rem] font-semibold leading-[0.8] tracking-[-0.05em] text-ember/85">
+                  <p className="font-display text-[clamp(5rem,7vw,7.5rem)] font-semibold leading-[0.8] tracking-[-0.05em] text-ember/85">
                     {pad(current.index)}
                   </p>
                   <p className="display-md mt-6 font-display uppercase">{current.title}</p>
@@ -107,7 +107,7 @@ export function ProcessTimeline() {
               <span className="label text-ember">{pad(step.index)}</span>
               <h3 className="display-sm uppercase">{step.title}</h3>
             </div>
-            <h3 className="hidden font-display text-[1.75rem] font-semibold uppercase tracking-[-0.03em] lg:block">
+            <h3 className="hidden font-display text-[clamp(1.5rem,1.6vw,1.75rem)] font-semibold uppercase tracking-[-0.03em] lg:block">
               <span className="mr-4 align-middle font-mono text-[0.6875rem] tracking-[0.16em] text-ember">
                 {pad(step.index)}
               </span>

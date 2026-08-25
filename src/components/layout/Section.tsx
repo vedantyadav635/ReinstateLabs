@@ -13,9 +13,9 @@ interface SectionProps {
 }
 
 const spacing = {
-  tight: "py-16 md:py-24",
-  base: "py-24 md:py-36",
-  wide: "py-32 md:py-52",
+  tight: "section-py-tight",
+  base: "section-py-base",
+  wide: "section-py-wide",
 } as const;
 
 const tones = {

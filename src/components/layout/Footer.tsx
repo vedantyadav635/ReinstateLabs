@@ -12,8 +12,8 @@ export function Footer() {
     <footer className="relative isolate overflow-hidden border-t border-line bg-ink">
       <div aria-hidden className="noise-layer -z-10" />
 
-      <div className="shell-wide relative pb-10 pt-20 md:pt-28">
-        <div className="grid gap-14 lg:grid-cols-12 lg:gap-8">
+      <div className="shell-wide relative section-pt-compact pb-10">
+        <div className="content-gap grid lg:grid-cols-12">
           <div className="lg:col-span-5">
             <p className="display-sm max-w-[18ch] font-display uppercase">
               {site.tagline}

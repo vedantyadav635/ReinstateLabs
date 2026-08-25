@@ -43,7 +43,7 @@ function Block({
       <div className="flex flex-wrap items-start justify-between gap-8">
         <div className="max-w-[34ch]">
           <p className="label text-ember">{pad(index + 1)}</p>
-          <h2 className="display-sm mt-5 uppercase md:text-[2.125rem]">{capability.title}</h2>
+          <h2 className="display-sm mt-5 uppercase md:text-[clamp(1.375rem,2.6vw,2.125rem)]">{capability.title}</h2>
           <p className="mt-5 text-[1.0625rem] leading-relaxed text-paper-dim">
             {capability.summary}
           </p>
@@ -92,7 +92,7 @@ export function CapabilityIndex() {
   const [active, setActive] = useState(0);
 
   return (
-    <div className="grid gap-y-12 lg:grid-cols-12 lg:gap-x-16">
+    <div className="content-gap grid lg:grid-cols-12">
       <nav aria-label="Capabilities" className="hidden lg:col-span-3 lg:block">
         <div className="sticky top-[calc(var(--nav-h)+3.5rem)]">
           <p className="label border-b border-line pb-4 text-mute-deep">Index</p>

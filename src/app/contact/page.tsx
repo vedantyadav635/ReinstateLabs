@@ -52,7 +52,7 @@ export default function ContactPage() {
 
         <h1 className="sr-only">Contact ReinstateLabs</h1>
 
-        <div className="mt-12 grid gap-14 lg:grid-cols-12 lg:gap-16">
+        <div className="content-gap mt-12 grid lg:grid-cols-12">
           <div className="lg:col-span-4">
             <h2 id="contact-heading" className="display-sm uppercase">
               Reach us
