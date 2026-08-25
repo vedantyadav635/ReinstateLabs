@@ -225,7 +225,7 @@ export function ChoiceField({
                 "group relative cursor-pointer select-none rounded-xl border px-4 py-2.5 text-[0.875rem] transition-all duration-200",
                 "has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-ember",
                 selected
-                  ? "border-ember bg-ember/15 text-paper font-medium shadow-[0_0_15px_rgba(226,85,43,0.18)]"
+                  ? "border-ember bg-ember/15 text-paper font-medium shadow-[0_0_15px_rgba(200,99,69,0.18)]"
                   : "border-white/12 bg-white/[0.03] text-paper-dim hover:bg-white/[0.07] hover:border-white/25 hover:text-paper shadow-sm",
                 error && !selected && "border-ember/40",
               )}
@@ -244,7 +244,7 @@ export function ChoiceField({
                   className={cn(
                     "size-2 rounded-full transition-all duration-300",
                     selected
-                      ? "bg-ember shadow-[0_0_8px_rgba(226,85,43,0.8)] scale-110"
+                      ? "bg-ember shadow-[0_0_8px_rgba(200,99,69,0.8)] scale-110"
                       : "bg-white/30 group-hover:bg-white/60",
                   )}
                 />

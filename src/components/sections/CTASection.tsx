@@ -56,9 +56,9 @@ export function CTASection({
         >
           <defs>
             <linearGradient id="rl-arc" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="#e2552b" stopOpacity="0" />
-              <stop offset="50%" stopColor="#e2552b" stopOpacity="0.85" />
-              <stop offset="100%" stopColor="#e2552b" stopOpacity="0" />
+              <stop offset="0%" stopColor="#c86345" stopOpacity="0" />
+              <stop offset="50%" stopColor="#c86345" stopOpacity="0.85" />
+              <stop offset="100%" stopColor="#c86345" stopOpacity="0" />
             </linearGradient>
           </defs>
           <circle cx="600" cy="600" r="520" stroke="url(#rl-arc)" strokeWidth="1.5" />
@@ -68,7 +68,7 @@ export function CTASection({
       </motion.div>
       <div className="noise-layer -z-10" aria-hidden />
 
-      <div className="shell relative">
+      <div className="shell-wide relative">
         <p className="label mb-8 flex items-center gap-3 text-mute sm:mb-12 md:mb-16">
           <span className="rl-blink size-[5px] rounded-full bg-ember" aria-hidden />
           {eyebrow}

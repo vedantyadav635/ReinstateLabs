@@ -10,7 +10,7 @@ export type VisualVariant =
   | "loop";
 
 const stroke = "#edeae4";
-const ember = "#e2552b";
+const ember = "#c86345";
 
 /**
  * One abstract diagram per service. Each is a schematic of the thing itself —

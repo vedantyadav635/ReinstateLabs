@@ -1,8 +1,10 @@
 import { cn } from "@/lib/utils";
 
 /**
- * Fixed vertical hairlines aligned to the page shell. They sit behind all
- * content and give the layout its measured, drafting-table structure.
+ * Fixed vertical hairlines spanning the true viewport. Deliberately NOT tied
+ * to the content shell/gutter — this is a decorative architectural backdrop,
+ * not a boundary content is expected to align with. Content sits above it
+ * with its own independent padding, so nothing ever touches a line.
  */
 export function GridLines({ className }: { className?: string }) {
   return (
@@ -13,15 +15,13 @@ export function GridLines({ className }: { className?: string }) {
         className,
       )}
     >
-      <div className="shell relative h-full">
-        <div className="grid h-full grid-cols-2 md:grid-cols-4">
-          <span className="border-l border-line" />
-          <span className="border-l border-line" />
-          <span className="hidden border-l border-line md:block" />
-          <span className="hidden border-l border-line md:block" />
-        </div>
-        <span className="absolute inset-y-0 right-[var(--shell-gutter)] w-px bg-line" />
+      <div className="grid h-full w-full grid-cols-2 md:grid-cols-4">
+        <span className="border-l border-line" />
+        <span className="border-l border-line" />
+        <span className="hidden border-l border-line md:block" />
+        <span className="hidden border-l border-line md:block" />
       </div>
+      <span className="absolute inset-y-0 right-0 w-px bg-line" />
     </div>
   );
 }

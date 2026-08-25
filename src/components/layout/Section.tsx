@@ -38,7 +38,7 @@ export function Section({
       aria-labelledby={labelledBy}
       className={cn("relative", spacing[space], tones[tone], className)}
     >
-      <div className="shell relative">{children}</div>
+      <div className="shell-wide relative">{children}</div>
     </section>
   );
 }

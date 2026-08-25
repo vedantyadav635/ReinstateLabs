@@ -18,7 +18,11 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      <Hero />
+      {/* Pinned to the original ground colour so the hero is untouched by
+          the darker/less-saturated palette used everywhere else on the site. */}
+      <div style={{ backgroundColor: "#08080a" }}>
+        <Hero />
+      </div>
       <Marquee items={marqueeItems} />
       <ServicesSection index={1} />
       <Positioning />

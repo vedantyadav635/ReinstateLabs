@@ -59,7 +59,7 @@ export function ServiceIndex() {
                 <span
                   aria-hidden
                   className={cn(
-                    "absolute inset-x-[calc(var(--shell-gutter)*-0.5)] inset-y-0 -z-10 origin-left scale-x-0 bg-[linear-gradient(90deg,rgba(226,85,43,0.10),transparent_65%)] transition-transform duration-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
+                    "absolute inset-x-[calc(var(--shell-gutter)*-0.5)] inset-y-0 -z-10 origin-left scale-x-0 bg-[linear-gradient(90deg,rgba(200,99,69,0.10),transparent_65%)] transition-transform duration-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
                     isActive && "scale-x-100",
                   )}
                 />

@@ -6,15 +6,15 @@
  * ------------------------------------------------------------------ */
 
 @theme {
-  --color-ink: #08080a;
-  --color-ink-raised: #0d0d10;
-  --color-ink-sunken: #050506;
+  --color-ink: #050506;
+  --color-ink-raised: #0a0a0c;
+  --color-ink-sunken: #030303;
   --color-paper: #edeae4;
   --color-paper-dim: #b9b6b0;
   --color-mute: #8a8a91;
   --color-mute-deep: #78787f;
-  --color-ember: #e2552b;
-  --color-ember-soft: #f0805c;
+  --color-ember: #c86345;
+  --color-ember-soft: #db8b71;
   --color-sand: #c6b9a6;
 
   --color-line: color-mix(in oklab, #edeae4 9%, transparent);
@@ -29,6 +29,9 @@
 
   --shell-gutter: 1.5rem;
   --shell-max: 76rem;
+  /* Responsive edge padding for full-bleed sections — scales smoothly with
+     the viewport instead of jumping at breakpoints like --shell-gutter. */
+  --shell-wide-gutter: clamp(1.5rem, 4vw, 5rem);
 }
 
 @layer theme {
@@ -114,27 +117,33 @@
     border-radius: 1px;
   }
 
-  /* Firefox / fallback scrollbar */
-  html { scrollbar-color: var(--color-mute-deep) var(--color-ink); }
-  ::-webkit-scrollbar { width: 10px; height: 10px; }
-  ::-webkit-scrollbar-track { background: var(--color-ink); }
-  ::-webkit-scrollbar-thumb {
-    background: #1e1e23;
-    border: 3px solid var(--color-ink);
-    border-radius: 999px;
-  }
-  ::-webkit-scrollbar-thumb:hover { background: #2c2c33; }
+  /* Scrollbar hidden — the ember progress rule under the navbar is the only
+     scroll indicator. Content stays fully scrollable by wheel, touch, and
+     keyboard; only the track/thumb chrome is removed. */
+  html { scrollbar-width: none; -ms-overflow-style: none; }
+  ::-webkit-scrollbar { display: none; width: 0; height: 0; }
 }
 
 /* ------------------------------------------------------------------ *
  *  Utilities
  * ------------------------------------------------------------------ */
 
+/* Constrained reading-width container. Used only by the homepage hero, whose
+   composition is intentionally kept as-is. */
 @utility shell {
   width: 100%;
   max-width: var(--shell-max);
   margin-inline: auto;
   padding-inline: var(--shell-gutter);
+}
+
+/* Full-bleed container for every other section — no max-width, so content
+   spans the full viewport on large/ultra-wide screens instead of floating
+   inside a centered column. Edge padding scales smoothly via clamp(). */
+@utility shell-wide {
+  width: 100%;
+  max-width: none;
+  padding-inline: var(--shell-wide-gutter);
 }
 
 /* Editorial display sizes — fluid, no layout shift */

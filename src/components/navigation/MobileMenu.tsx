@@ -84,7 +84,7 @@ export function MobileMenu({ onClose }: { onClose: () => void }) {
       <div aria-hidden className="tech-grid absolute inset-0 opacity-40" />
       <div className="noise-layer" aria-hidden />
 
-      <div className="shell relative flex h-full flex-col justify-between pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-[calc(var(--nav-h)+1.5rem)]">
+      <div className="shell-wide relative flex h-full flex-col justify-between pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-[calc(var(--nav-h)+1.5rem)]">
         <nav aria-label="Mobile" className="mt-auto">
           <ul>
             {site.nav.map((navItem, i) => (

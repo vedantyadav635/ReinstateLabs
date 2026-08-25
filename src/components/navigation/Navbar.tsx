@@ -81,7 +81,7 @@ export function Navbar() {
       >
         <div
           className={cn(
-            "shell flex items-center justify-between transition-[height] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
+            "shell-wide flex items-center justify-between transition-[height] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
             condensed ? "h-16 md:h-[4.25rem]" : "h-[var(--nav-h)]",
           )}
         >

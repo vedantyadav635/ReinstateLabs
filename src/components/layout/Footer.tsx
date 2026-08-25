@@ -12,7 +12,7 @@ export function Footer() {
     <footer className="relative isolate overflow-hidden border-t border-line bg-ink">
       <div aria-hidden className="noise-layer -z-10" />
 
-      <div className="shell relative pb-10 pt-20 md:pt-28">
+      <div className="shell-wide relative pb-10 pt-20 md:pt-28">
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-5">
             <p className="display-sm max-w-[18ch] font-display uppercase">
@@ -76,7 +76,8 @@ export function Footer() {
 
         {/*
           Ghosted wordmark. Drawn as SVG with `textLength` so it spans the
-          shell exactly at every viewport width instead of overflowing.
+          shell exactly at every viewport width instead of overflowing —
+          "Reinstate" is a low-contrast fill, "Labs" carries the ember accent.
         */}
         <div className="relative mt-16 select-none md:mt-24" aria-hidden>
           <svg viewBox="0 0 100 13" className="w-full" role="presentation">
@@ -89,10 +90,10 @@ export function Footer() {
               fontWeight="600"
               className="font-display uppercase"
             >
-              <tspan fill="none" stroke="#edeae4" strokeOpacity="0.17" strokeWidth="0.09">
+              <tspan fill="#edeae4" fillOpacity="0.08">
                 Reinstate
               </tspan>
-              <tspan fill="#e2552b" fillOpacity="0.5">
+              <tspan fill="#c86345" fillOpacity="0.5">
                 Labs
               </tspan>
             </text>

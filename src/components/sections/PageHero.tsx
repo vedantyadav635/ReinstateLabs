@@ -41,7 +41,7 @@ export function PageHero({
       />
       <div aria-hidden className="noise-layer -z-10" />
 
-      <div className="shell">
+      <div className="shell-wide">
         <ScrollReveal distance={14} duration={0.6} className="border-t border-line pt-4">
           <p className="label flex items-center gap-3 text-mute">
             <span className="rl-blink size-[5px] rounded-full bg-ember" aria-hidden />

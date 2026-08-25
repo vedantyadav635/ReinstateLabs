@@ -65,7 +65,7 @@ export function SystemDiagram() {
             y1={TOP + 12}
             x2={LEFT - 44}
             y2={TOP + ROW_H * (layers.length - 1) + 52}
-            stroke="#e2552b"
+            stroke="#c86345"
             strokeOpacity={0.55}
             initial={reduced ? undefined : { pathLength: 0 }}
             animate={inView || reduced ? { pathLength: 1 } : undefined}
@@ -88,7 +88,7 @@ export function SystemDiagram() {
                   transition={{ duration: 1, delay: li * 0.1, ease: easing.outQuart }}
                 />
 
-                <circle cx={LEFT - 44} cy={y + 34} r={4} fill="#e2552b" />
+                <circle cx={LEFT - 44} cy={y + 34} r={4} fill="#c86345" />
 
                 <text
                   x={0}
@@ -141,7 +141,7 @@ export function SystemDiagram() {
                         y={y + 16}
                         width={3}
                         height={44}
-                        fill={bi === 0 ? "#e2552b" : "#edeae4"}
+                        fill={bi === 0 ? "#c86345" : "#edeae4"}
                         fillOpacity={bi === 0 ? 0.9 : 0.18}
                       />
                       <text x={x + 18} y={y + 43} fill="#b9b6b0" fontSize="14">

@@ -18,7 +18,7 @@ export default function NotFound() {
       />
       <div aria-hidden className="noise-layer -z-10" />
 
-      <div className="shell py-20">
+      <div className="shell-wide py-20">
         <p className="label flex items-center gap-3 border-t border-line pt-4 text-mute">
           <span className="size-[5px] rounded-full bg-ember" aria-hidden />
           Error 404
