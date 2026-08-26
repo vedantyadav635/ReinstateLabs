@@ -90,12 +90,13 @@ export function Hero() {
           />
         </div>
 
-        {/* Lower rail: statement, actions, coordinates */}
-        <div className="grid gap-10 border-t border-line pt-8 lg:grid-cols-12 lg:gap-8">
-          <div
-            className="rl-fade-up lg:col-span-6 xl:col-span-5"
-            style={{ animationDelay: "0.7s" }}
-          >
+        {/* Lower rail: statement, actions, coordinates — left / centre / right.
+            The two outer blocks share equal flex-basis so the middle block
+            (the CTA, protected at its natural size so it never wraps) always
+            lands in the true centre, regardless of how much wider the
+            paragraph's content is than the coordinates'. */}
+        <div className="flex flex-col gap-10 border-t border-line pt-8 lg:flex-row lg:items-end lg:gap-8">
+          <div className="rl-fade-up lg:min-w-0 lg:flex-1" style={{ animationDelay: "0.7s" }}>
             <p className="lede max-w-[46ch]">
               ReinstateLabs designs and builds software, AI systems, cloud
               infrastructure and automation for companies that need technology to
@@ -104,7 +105,7 @@ export function Hero() {
           </div>
 
           <div
-            className="rl-fade-up flex flex-wrap items-center gap-3 lg:col-span-4 lg:justify-start xl:col-span-4"
+            className="rl-fade-up flex flex-col items-center gap-3 lg:shrink-0"
             style={{ animationDelay: "0.82s" }}
           >
             <MagneticButton href="/book-appointment" size="lg">
@@ -112,22 +113,24 @@ export function Hero() {
             </MagneticButton>
             {/* Secondary action is a link, not a second pill — two pills of
                 different widths read as an unresolved pair. */}
-            <TextLink href="/what-we-do" arrow className="ml-2 text-[0.9375rem] text-paper-dim">
+            <TextLink href="/what-we-do" arrow className="text-[0.9375rem] text-paper-dim">
               Explore what we do
             </TextLink>
           </div>
 
-          <dl
-            className="rl-fade-up hidden gap-1 self-end lg:col-span-2 lg:block xl:col-span-3"
+          <div
+            className="rl-fade-up hidden lg:flex lg:min-w-0 lg:flex-1 lg:justify-end"
             style={{ animationDelay: "0.94s" }}
           >
-            {COORDINATES.map((row) => (
-              <div key={row.label} className="flex justify-between gap-4 border-b border-line py-1.5">
-                <dt className="label text-mute-deep">{row.label}</dt>
-                <dd className="label text-paper-dim">{row.value}</dd>
-              </div>
-            ))}
-          </dl>
+            <dl className="gap-1">
+              {COORDINATES.map((row) => (
+                <div key={row.label} className="flex justify-between gap-4 border-b border-line py-1.5">
+                  <dt className="label text-mute-deep">{row.label}</dt>
+                  <dd className="label text-paper-dim">{row.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         </div>
       </motion.div>
 

@@ -5,7 +5,6 @@
 
 export type ServiceId =
   | "software"
-  | "digital"
   | "ai"
   | "data"
   | "cloud"
@@ -30,7 +29,7 @@ export const services: readonly Service[] = [
     id: "software",
     anchor: "software-engineering",
     index: 1,
-    title: "Software Development",
+    title: "Software/Web Development",
     short: "Custom business software, APIs, and databases.",
     description:
       "We build custom business software, admin tools, and secure APIs engineered to scale reliably and stay easy for your team to use.",
@@ -44,26 +43,9 @@ export const services: readonly Service[] = [
     visual: "stack",
   },
   {
-    id: "digital",
-    anchor: "web-applications",
-    index: 2,
-    title: "Web & Digital Products",
-    short: "Fast, modern, and mobile-friendly websites.",
-    description:
-      "Modern websites and web applications built for fast loading speeds, clean design, and effortless user experience on all devices.",
-    deliverables: [
-      "Modern Web Applications",
-      "Custom Brand & UI Design",
-      "Mobile-Friendly Layouts",
-      "Ultra-Fast Page Loading",
-      "Easy Accessibility for All",
-    ],
-    visual: "viewport",
-  },
-  {
     id: "ai",
     anchor: "ai-ml",
-    index: 3,
+    index: 2,
     title: "AI & Machine Learning",
     short: "Smart AI chatbots and data prediction tools.",
     description:
@@ -80,7 +62,7 @@ export const services: readonly Service[] = [
   {
     id: "data",
     anchor: "data-analytics",
-    index: 4,
+    index: 3,
     title: "Data & Analytics",
     short: "Live dashboards and unified business data.",
     description:
@@ -97,7 +79,7 @@ export const services: readonly Service[] = [
   {
     id: "cloud",
     anchor: "cloud-infrastructure",
-    index: 5,
+    index: 4,
     title: "Cloud & Infrastructure",
     short: "Safe cloud hosting and fast servers.",
     description:
@@ -114,7 +96,7 @@ export const services: readonly Service[] = [
   {
     id: "automation",
     anchor: "automation",
-    index: 6,
+    index: 5,
     title: "Automation",
     short: "Save time by automating repetitive daily work.",
     description:
@@ -131,7 +113,7 @@ export const services: readonly Service[] = [
   {
     id: "marketing",
     anchor: "marketing",
-    index: 7,
+    index: 6,
     title: "Marketing & Strategy",
     short: "Growth strategy, SEO, paid ads, and brand building.",
     description:
